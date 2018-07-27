@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <title>Test Page</title>
+    <style>
+        .custom-restricted-width {
+            /* To limit the menu width to the content of the menu: */
+            display: inline-block;
+            /* Or set the width explicitly: */
+            /* width: 10em; */
+        }
+    </style>
+</head>
+<body>
+    <div class="pure-menu custom-restricted-width">
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Flickr</a></li>
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Messenger</a></li>
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sports</a></li>
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Finance</a></li>
+            <li class="pure-menu-item pure-menu-has-children">
+                <a href="#" id="menuLink1" class="pure-menu-link">More</a>
+                <ul class="pure-menu-children">
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Autos</a></li>
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Flickr</a></li>
+                    <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                        <a href="#" id="menuLink1" class="pure-menu-link">Even More</a>
+                        <ul class="pure-menu-children">
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Foo</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Bar</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Baz</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <script src="DropDownSupport.js"></script>
+</body>
+</html>
