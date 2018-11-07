@@ -1,0 +1,300 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <link rel="stylesheet" href="Animate.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <title>Speed Racer</title>
+    <style>
+        #car {
+            position: relative; 
+            left: 10px;
+        }
+
+        #car2 {
+            position: relative;
+            left: 10px;
+        }
+
+        #gameComponent {
+            position: absolute;
+            top: 460px;
+            left: 0px;
+        }
+
+        #typingComponent {
+            position: absolute;
+            top: 170px;
+            left: 500px;
+        }
+
+        #toType {
+            position: relative;
+            left: 75px;
+            font: bold;
+            font-size: 32px;
+        }
+
+        .custom-restricted-width {
+            /* to limit the menu width to the content of the menu: */
+            display: inline-block;
+            /* Or set the width explicitly: */
+            /* width: 10em; */
+        }
+
+        #Test {
+            /* text-indent: -99999px; */
+            background-color: transparent;
+        }
+
+        #Updates {
+            position: fixed;
+            bottom: 0;
+            right: 750px;
+            width: 300px;
+        }
+
+        #countDown {
+            position: fixed;
+            left: 550px;
+            top: 25px;
+        }
+
+    </style>
+</head>
+<body background="racetrack.jpg">
+    <div class="pure-menu custom-restricted-width">
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item pure-menu-selected"><a onclick="CountDown()" class="pure-menu-link">Flickr</a></li>
+            <li class="pure-menu-item"><a class="pure-menu-link" onclick="Difficulty(1)">Easy</a></li>
+            <li class="pure-menu-item"><a class="pure-menu-link" onclick="Difficulty(2)">Medium</a></li>
+            <li class="pure-menu-item"><a class="pure-menu-link" onclick="Difficulty(3)">Hard</a></li>
+            <li class="pure-menu-item pure-menu-has-children">
+                <a href="#" id="menuLink1" class="pure-menu-link">More</a>
+                <ul class="pure-menu-children">
+                    <li class="pure-menu-item"><a class="pure-menu-link" onclick="Reset()">Reset</a></li>
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Flickr</a></li>
+                    <li class="pure-menu-item pure-menu-has-children">
+                        <a href="#" id="menuLink1" class="pure-menu-link">Even More</a>
+                        <ul class="pure-menu-children">
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Foo</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Bar</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Baz</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="pure-g" id="gameContainer">
+        <div class="pure-u-1-1 " id="typingComponent" height="1000" width="1000">
+            <form class="pure-form">
+                <fieldset>
+                    <div class="pure-g">
+                        <div class="pure-u-1 pure-u-md-1-3">
+                            <!--<label id="toType" for="textIn">Daniel<label>-->
+                            <p id="toType">Daniel Gomez</p>
+                            <input id="textIn" type="text" class="pure-u-1-4" placeholder="Type Here" />
+                            <input type="button" onclick="moveCar()">
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+        </div>
+        <div class="pure-u-1-1" id="gameComponent" height="1000" width="1000">
+            <p><img src="car.png" id="car" height="100" width="100" /></p>
+            <p><img src="car.png" id="car2" height="100" width="100" /></p>
+            <p id="stdOut">Play Tag</p>
+        </div>
+    </div>
+    <p id="Updates">Updates Section<p>
+    <p><img src="" id="countDown" height="" width="" /></p>
+    <p><img src="car.png" id="car2" height="100" width="100" /></p>
+    <script>
+        var timeSet = false;
+        var curWidth = 10;
+        var oponWidth = 10;
+        var cnt = 0;
+        var number = 3;
+        var timer = null;
+        var timer2 = null;
+        var increment = 10;
+        var initCountDown;
+        var clearCountDown;
+        var a = ["Adult", "Aeroplane", "Air", "Aircraft Carrier", "Airforce", "Airport", "Album", "Alphabet", "Apple", "Arm", "Army", "Baby", "Baby", "Backpack", "Balloon", "Banana", "Bank", "Barbecue", "Bathroom", "Bathtub", "Bed", "Bed", "Bee", "Bible", "Bible", "Bird", "Bomb", "Book", "Boss", "Bottle", "Bowl", "Box", "Boy", "Brain", "Bridge", "Butterfly", "Button", "Cappuccino", "Car", "Car-race", "Carpet", "Carrot", "Cave", "Chair", "Chess Board", "Chief", "Child", "Chisel", "Chocolates", "Church", "Church", "Circle", "Circus", "Circus", "Clock", "Clown", "Coffee", "Coffee-shop", "Comet", "Compact Disc", "Compass", "Computer", "Crystal", "Cup", "Cycle", "Data Base", "Desk", "Diamond", "Dress", "Drill", "Drink", "Drum", "Dung", "Ears", "Earth", "Egg", "Electricity", "Elephant", "Eraser", "Explosive", "Eyes", "Family", "Fan", "Feather", "Festival", "Film", "Finger", "Fire", "Floodlight", "Flower", "Foot", "Fork", "Freeway", "Fruit", "Fungus", "Game", "Garden", "Gas", "Gate", "Gemstone", "Girl", "Gloves", "God", "Grapes", "Guitar", "Hammer", "Hat", "Hieroglyph", "Highway", "Horoscope", "Horse", "Hose", "Ice", "Ice-cream", "Insect", "Jet fighter", "Junk", "Kaleidoscope", "Kitchen", "Knife", "Leather jacket", "Leg", "Library", "Liquid", "Magnet", "Man", "Map", "Maze", "Meat", "Meteor", "Microscope", "Milk", "Milkshake", "Mist", "Money $$$$", "Monster", "Mosquito", "Mouth", "Nail", "Navy", "Necklace", "Needle", "Onion", "PaintBrush", "Pants", "Parachute", "Passport", "Pebble", "Pendulum", "Pepper", "Perfume", "Pillow", "Plane", "Planet", "Pocket", "Post-office", "Potato", "Printer", "Prison", "Pyramid", "Radar", "Rainbow", "Record", "Restaurant", "Rifle", "Ring", "Robot", "Rock", "Rocket", "Roof", "Room", "Rope", "Saddle", "Salt", "Sandpaper", "Sandwich", "Satellite", "School", "Sex", "Ship", "Shoes", "Shop", "Shower", "Signature", "Skeleton", "Slave", "Snail", "Software", "Solid", "Space Shuttle", "Spectrum", "Sphere", "Spice", "Spiral", "Spoon", "Sports-car", "Spot Light", "Square", "Staircase", "Star", "Stomach", "Sun", "Sunglasses", "Surveyor", "Swimming Pool", "Sword", "Table", "Tapestry", "Teeth", "Telescope", "Television", "Tennis racquet", "Thermometer", "Tiger", "Toilet", "Tongue", "Torch", "Torpedo", "Train", "Treadmill", "Triangle", "Tunnel", "Typewriter", "Umbrella", "Vacuum", "Vampire", "Videotape", "Vulture", "Water", "Weapon", "Web", "Wheelchair", "Window", "Woman", "Worm", "X-ray", "Last updated: 3rd June 1997"];
+        var init = Math.floor((Math.random() * a.length) + 1);
+        $("#toType").text(a[init]);
+        var text = $("#toType").text();
+
+        $("#textIn").on('input', function () {
+            if (!timeSet) {
+                timer = setInterval(moveOpponent, 1000);
+                timer2 = setInterval(IfWon, 1000);
+                timeSet = true;
+            }
+            // var text = document.getElementById("toType").textContent;
+            // alert("detected input");
+            var input = $("#textIn").val();
+            // alert("" + input.charAt(cnt) + text.charAt(cnt));
+            // alert(text);
+            if (input.charAt(cnt) == text.charAt(cnt)) {
+                cnt++;
+                moveCar();
+            } else {
+                $("#textIn").val(input.substring(0, cnt));
+            }
+
+            // 1300
+            // document.getElementById("stdOut").textContent = Number(document.getElementById("car").style.left.replace("px",""));
+            if (Number(document.getElementById("car").style.left.replace("px", "")) > 500) {
+                alert("car1 wins");
+                Reset();
+            }
+            else if (input == text) {
+                NewWord();
+            }
+        });
+
+        function Difficulty(i) {
+            if (i == 1) {
+                increment = 10;
+            } else if (i == 2) {
+                increment = 20;
+            } else if (i == 3) {
+                increment = 40;
+            }
+        }
+
+        function IfWon() {
+            if (Number(document.getElementById("car2").style.left.replace("px", "")) > 500) {
+                alert("car2 wins");
+                Reset();
+            }
+        }
+
+
+        function CountDown() {
+            initCountDown = setInterval(ThreeTwoOne, 3000);
+        }
+
+        function ClearCountDown() {
+            document.getElementById("countDown").src = "";
+            $('#countDown').addClass('');
+        }
+
+        function ThreeTwoOne() {
+            setTimeout(ClearCountDown, 1000);
+            switch (number) {
+                case 3:
+                    document.getElementById("countDown").src = "three.png";
+                    $('#countDown').addClass('animated fadeIn');
+                    number--;
+                    break;
+                case 2:
+                    document.getElementById("countDown").src = "two.png";
+                    $('#countDown').addClass('animated fadeIn');
+                    number--;
+                    break;
+                case 1:
+                    document.getElementById("countDown").src = "one.png";
+                    $('#countDown').addClass('animated fadeIn');
+                    number--;
+                    break;
+                case 0:
+                    clearInterval(initCountDown);
+                    break;
+            }
+        }
+
+
+        function Reset() {
+            document.getElementById("car2").style.left = "0px";
+            document.getElementById("car").style.left = "0px";
+            clearInterval(timer);
+            clearInterval(timer2);
+            oponWidth = curWidth = 0;
+            timeSet = false;
+            NewWord();
+        }
+
+        function moveOpponent() {
+            var rDistance = Math.floor((Math.random() * increment) + (increment / 2));
+            oponWidth = oponWidth + rDistance;
+            var toInput = "" + oponWidth + "px";
+            document.getElementById("car2").style.left = toInput;
+            document.getElementById("stdOut").textContent = Number(document.getElementById("car2").style.left.replace("px", ""));
+        }
+
+        function moveCar() {
+            curWidth += 20;
+            var toInput = "" + curWidth + "px";
+            // alert(document.getElementById("car").hasAttribute("left"));
+            // document.getElementById("car").setAttribute("width", toInput);
+            document.getElementById("car").style.left = toInput;
+        }
+
+        function NewWord() {
+            // alert("complete");
+            var r = Math.floor((Math.random() * a.length) + 1);
+            $("#toType").text(a[r]);
+            text = $("#toType").text();
+            $("#textIn").val("");
+            cnt = 0;
+        }
+
+
+        // Reusable generic function
+        function surroundInElement(el, regex, surrounderCreateFunc) {
+            // script and style elements are left alone
+            if (!/^(script|style)$/.test(el.tagName)) {
+                var child = el.lastChild;
+                while (child) {
+                    if (child.nodeType == 1) {
+                        surroundInElement(child, regex, surrounderCreateFunc);
+                    } else if (child.nodeType == 3) {
+                        surroundMatchingText(child, regex, surrounderCreateFunc);
+                    }
+                    child = child.previousSibling;
+                }
+            }
+        }
+
+        // Reusable generic function
+        function surroundMatchingText(textNode, regex, surrounderCreateFunc) {
+            var parent = textNode.parentNode;
+            var result, surroundingNode, matchedTextNode, matchLength, matchedText;
+            while (textNode && (result = regex.exec(textNode.data))) {
+                matchedTextNode = textNode.splitText(result.index);
+                matchedText = result[0];
+                matchLength = matchedText.length;
+                textNode = (matchedTextNode.length > matchLength) ?
+                    matchedTextNode.splitText(matchLength) : null;
+                surroundingNode = surrounderCreateFunc(matchedTextNode.cloneNode(true));
+                parent.insertBefore(surroundingNode, matchedTextNode);
+                parent.removeChild(matchedTextNode);
+            }
+        }
+
+        // This function does the surrounding for every matched piece of text
+        // and can be customized  to do what you like
+        function createSpan(matchedTextNode) {
+            var el = document.createElement("span");
+            el.style.backgroundColor = "red";
+            el.style.color = "white";
+            el.appendChild(matchedTextNode);
+            return el;
+        }
+
+        // The main function
+        function wrapSpecialChars(container) {
+            surroundInElement(container, /[‘’“”‛‟′″˝]+/, createSpan);
+        }
+            //  wrapSpecialChars(document.body);
+    </script>
+    <script src="DropDownSupport.js"></script>
+</body>
+</html>
