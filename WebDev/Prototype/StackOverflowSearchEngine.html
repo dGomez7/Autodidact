@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <style>
+    </style>
+    <script>
+
+        function loadPage() {
+            var searchText = "https://stackoverflow.com/search?q=";
+            var toConcat = "" + document.getElementById("searchingFor").value;
+            toConcat = toConcat.replace(' ', '+');
+            searchText += toConcat;
+            document.getElementById("StackOverflowView").src = searchText;
+        }
+    </script>
+    </head>
+    <body>
+        <input type="text" id="searchingFor" name="Stack Overflow Search">
+        <button onclick="loadPage()" id="searchStackOverflow">Search</button>
+            <iframe src="" height="400" width="600" id="StackOverflowView"></iframe>
+    </body>
+
+</html>
