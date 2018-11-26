@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+
+.container {
+    padding: 16px;
+    background-color: #DFDFDF;
+    align: center;
+    width: 85%;
+    margin: 4% 6% auto;
+}
+
+input[type=text], input[type=password] {
+    width: 50%;
+    padding: 15px;
+    margin: 5px 420px auto;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    align: center;
+}
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+    align: center;
+}
+
+.registerbtn {
+    background-color:#5FE2F2;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 420px;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    opacity: 0.9;
+    align: center;
+}
+
+a {
+    color: dodgerblue;
+}
+
+.signin {
+    background-color:#B3F4F7;
+    text-align: center;
+}
+
+
+h1 {
+  color: #54C5E4;
+}
+
+p1 {
+  color: #54C5E4;
+}
+</style>
+</head>
+<body>
+
+<form action="/adduser" method="post">
+  <div class="container">
+    <h1>Register For Autodidact</h1>
+    <hr>
+
+    <label for="email"><b><p1>Email</p1></b></label>
+    <input type="text" placeholder="Enter Email" name="Usernames" required>
+    <br> <br>
+    <label for="psw"><b><p1>Password</p1></b></label>
+    <input type="password" placeholder="Enter Password" name="Passwords" required>
+    <br> <br>
+    <label for="psw-repeat"><b><p1>Repeat Password</p1></b></label>
+    <input type="password" placeholder="Repeat Password" name="Passwords" required>
+    <br> <br><br><br>
+    <hr>
+    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+
+    <button type="submit" class="registerbtn">Register</button>
+  </div>
+
+  <div class="container signin">
+    <p>Already have an account? <a href="#">Sign in</a>.</p>
+  </div>
+</form>
+
+</body>
+</html>

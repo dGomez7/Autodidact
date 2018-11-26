@@ -1,0 +1,28 @@
+<html>
+    <head></head>
+    <style>
+      .blogform {
+        margin: 1% 25% auto;
+      }
+
+
+    </style>
+    <body>
+        <h1>Node Blog</h1>
+
+        <% for(let i = 0; i < posts.length; i++) { %>
+            <article>
+              <hr>
+                <p><%= posts[i].body %></p>
+                <p><% = posts[i].hashtag %></p>
+            </article>
+        <% } %>
+        <div class="blogform">
+        <form action="/addPost" method="post">
+            <textarea name="body"></textarea>
+            <textarea name="hashtag"></textarea>
+            <input type="submit" value="Add Post" />
+        </form>
+      </div>
+    </body>
+</html>

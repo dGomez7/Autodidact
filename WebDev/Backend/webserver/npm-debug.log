@@ -1,0 +1,46 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', './config.json' ]
+2 info using npm@3.5.2
+3 info using node@v8.10.0
+4 verbose config Skipping project config: /home/chapo/.npmrc. (matches userconfig)
+5 silly loadCurrentTree Starting
+6 silly install loadCurrentTree
+7 silly install readLocalPackageData
+8 silly fetchPackageMetaData ./config.json
+9 silly fetchOtherPackageData ./config.json
+10 silly cache add args [ './config.json', null ]
+11 verbose cache add spec ./config.json
+12 silly cache add parsed spec Result {
+12 silly cache add   raw: './config.json',
+12 silly cache add   scope: null,
+12 silly cache add   name: null,
+12 silly cache add   rawSpec: './config.json',
+12 silly cache add   spec: '/home/chapo/Desktop/webserver/config.json',
+12 silly cache add   type: 'local' }
+13 error addLocal Could not install /home/chapo/Desktop/webserver/config.json
+14 silly fetchPackageMetaData Error: ENOENT: no such file or directory, open '/home/chapo/Desktop/webserver/config.json'
+14 silly fetchPackageMetaData  error for ./config.json { Error: ENOENT: no such file or directory, open '/home/chapo/Desktop/webserver/config.json'
+14 silly fetchPackageMetaData   errno: -2,
+14 silly fetchPackageMetaData   code: 'ENOENT',
+14 silly fetchPackageMetaData   syscall: 'open',
+14 silly fetchPackageMetaData   path: '/home/chapo/Desktop/webserver/config.json' }
+15 silly rollbackFailedOptional Starting
+16 silly rollbackFailedOptional Finishing
+17 silly runTopLevelLifecycles Starting
+18 silly runTopLevelLifecycles Finishing
+19 silly install printInstalled
+20 verbose stack Error: ENOENT: no such file or directory, open '/home/chapo/Desktop/webserver/config.json'
+21 verbose cwd /home/chapo/Desktop/webserver
+22 error Linux 4.15.0-33-generic
+23 error argv "/usr/bin/node" "/usr/bin/npm" "install" "./config.json"
+24 error node v8.10.0
+25 error npm  v3.5.2
+26 error path /home/chapo/Desktop/webserver/config.json
+27 error code ENOENT
+28 error errno -2
+29 error syscall open
+30 error enoent ENOENT: no such file or directory, open '/home/chapo/Desktop/webserver/config.json'
+31 error enoent ENOENT: no such file or directory, open '/home/chapo/Desktop/webserver/config.json'
+31 error enoent This is most likely not a problem with npm itself
+31 error enoent and is related to npm not being able to find a file.
+32 verbose exit [ -2, true ]

@@ -1,0 +1,58 @@
+<html>
+    <head>
+      <title> Autodidact</title>
+      <style>
+      .formclass {
+        margin: 1% 42% auto;
+      }
+      .data {
+        margin: 5% 22% auto;
+        width: 60%;
+        background-color: #D7F8F9;
+      }
+      p1{
+        font-family: arial;
+        color: #23B04C;
+      }
+      p2{
+        font-family: arial;
+        color: #5373F3;
+      }
+      h2{
+        font-family: arial;
+      }
+      .card {
+     background-color: #DCE2E2;
+     padding: 3px;
+     width: 900px;
+     margin: 5% 24% auto;
+}
+      </style>
+    </head>
+    <body>
+        <h1>Node Blog</h1>
+
+        <div class="formclass">
+        <form action="/addPost" method="post">
+            <textarea name="body"></textarea>
+            <br>
+            <textarea name="hashtag"></textarea>
+            <br>
+              <textarea name="titleHeading"></textarea>
+            <input type="submit" value="Add Post" />
+        </form>
+      </div>
+
+
+ <% for(let i = 0; i < posts.length; i++) { %>
+           <div class="card">
+             <h2><%=posts[i].titleHeading%></h2>
+             <p1><%= posts[i].body %></p1>
+             <br>
+             <p2><%= posts[i].hashtag %></p2>
+   </div>
+    <% } %>
+
+
+    </body>
+</html>
